@@ -1,0 +1,169 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "01. Getting Started",
+  "steps": [
+    {
+      "file": "src/01.start/LetsStart.md",
+      "description": "To start, we need to understand what is a provider. Terraform is a multi-platform IaC (Infrastructure as Code) tool and doesn't know you want to work with Azure. For Terraform to understand what services you are going to use, we need to create a **provider.tf** file and specify Azure.\r\n\r\nFirst we need to change our working directory in terminal to exercise\\exercise-01:\r\n\r\n>> cd exercise\\exercise-01\r\n\r\nAnd we need to create a file called **provider.tf**:\r\n\r\n>> New-Item -Name provider.tf -ItemType File",
+      "line": 1,
+      "title": "Execute - provider create"
+    },
+    {
+      "file": "exercise/exercise-01/provider.tf",
+      "description": "We need to specify in our **provider.tf** file that we are going to use Azure.\r\n\r\nExecute or enter the following code:\r\n\r\n```\r\nprovider \"azurerm\" {\r\n  features {}\r\n}\r\n```",
+      "line": 5,
+      "title": "Execute - provider code"
+    },
+    {
+      "file": "exercise/exercise-01/provider.tf",
+      "description": "The first line calls **provider** where we have specified the Azure provider name. For more information on the Azure provider, click [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs).",
+      "line": 1,
+      "title": "Provider - azurerm"
+    },
+    {
+      "file": "exercise/exercise-01/provider.tf",
+      "description": "We can use **features** to add resource configurations to certain Azure services. This will apply to any resources we confgiure in this directory. Here we are not congfiguring features.",
+      "line": 2,
+      "title": "Provider - features"
+    },
+    {
+      "file": "exercise/exercise-01/provider.tf",
+      "description": "Save the file either using **Ctrl+S** or **File > Save**.\r\n\r\nRun **terraform init**:\r\n\r\n>> terraform init\r\n\r\nOnce its completed, you will see from the output something like this:\r\n\r\nInitializing provider plugins...\r\n- Finding latest version of hashicorp/azurerm...\r\n- Installing hashicorp/azurerm v...\r\n- Installed hashicorp/azurerm v...\r\n\r\nNow lets look at the contents in our working directory:\r\n\r\n>> ls",
+      "line": 4,
+      "title": "Execute - terraform init"
+    },
+    {
+      "file": "src/01.start/Directory.md",
+      "description": "**.terraform** is a directory created as part of the **terraform init** execution.\r\n\r\nThe contents of this directory should look something like this:\r\n\r\n**providers\\registry.terraform.io\\hashicorp\\azurerm** - the only file is the Azure provider application.",
+      "line": 5,
+      "title": "Dir - .terraform"
+    },
+    {
+      "file": "src/01.start/Directory.md",
+      "description": "The **.terraform.lock.hcl** file is used to lock versions of providers so they do not change. This is to prevent breaking changes and increase security, these will be covered later in the content.\r\n\r\nYou can view the contents of the file by executing the following:\r\n\r\n>> code .terraform.lock.hcl",
+      "line": 6,
+      "title": "Dir - .terraform.lock.hcl"
+    },
+    {
+      "file": "src/01.start/Directory.md",
+      "description": "And **provider.tf** is the file we've been working on.",
+      "line": 7,
+      "title": "Dir - provider.tf"
+    },
+    {
+      "file": "src/01.start/Directory.md",
+      "description": "The provider is downloaded and you understand the files that exists. We can now create the **main.tf** file which will contain our first Azure resource code.\r\n\r\n>> New-Item -Name main.tf -ItemType File",
+      "line": 8,
+      "title": "Execute - main create"
+    },
+    {
+      "file": "exercise/exercise-01/main.tf",
+      "description": "The first resource we create will be a Resource Group. Execute the below:\r\n\r\n```\r\nresource \"azurerm_resource_group\" \"first_tf\"{\r\n  name     = \"first_tf_rgp\"\r\n  location = \"UK South\"\r\n}\r\n```",
+      "line": 4,
+      "title": "Execute - az rgp create"
+    },
+    {
+      "file": "exercise/exercise-01/main.tf",
+      "description": "**resource** is calling the type of resource. We specified **azurerm_resource_group** and then gave that resource a reference name of **first_tf**. This name is not the actual name of the resource we are creating but is used in code to refer to it, something we will cover later.",
+      "line": 1,
+      "title": "Resource Group - resource"
+    },
+    {
+      "file": "exercise/exercise-01/main.tf",
+      "description": "The **name** argument will be what is represented as the name of the resource group in Azure. Here we specify the name as **first_tf_rgp**.",
+      "line": 2,
+      "title": "Resource Group - name"
+    },
+    {
+      "file": "exercise/exercise-01/main.tf",
+      "description": "And **location** is used to set the resource location, one of many Azure regions.",
+      "line": 3,
+      "title": "Resource Group - location"
+    },
+    {
+      "file": "exercise/exercise-01/main.tf",
+      "description": "**name** and **location** are required arguments and will trigger errors if missing. There are also additional arguments which are optional you can choose to either include or exclude, for example, tags. You can view what arguments are required and optional by visting the HashiCorp Terraform site, click [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) for Azure Resource Group information.",
+      "line": 5,
+      "title": "Resource Group - required/optional arguments"
+    },
+    {
+      "file": "src/01.Start/AzCli.md",
+      "description": "We need to connect to Azure to apply the Terraform configurations.",
+      "line": 1,
+      "title": "Azure CLI"
+    },
+    {
+      "file": "src/01.Start/AzCli.md",
+      "description": "We need to login to Azure CLI by running the following:\r\n\r\n>> az login",
+      "line": 5,
+      "title": "Azure CLI - login"
+    },
+    {
+      "file": "src/01.Start/AzCli.md",
+      "description": "Once logged in, we need to identify the Subscription ID you want to deploy the resource to. Run the following to list subscriptions:\r\n\r\n>> az account list\r\n\r\nTake note of the **id** for the subscription we are deploying to.",
+      "line": 7,
+      "title": "Azure CLI - list"
+    },
+    {
+      "file": "exercise/exercise-01/provider.tf",
+      "description": "Using the subscription id, we need to set within the provider what Azure subscription we want to apply the configuration.\r\n\r\n```\r\nsubscription_id = ID-NUMBER\r\n```\r\n\r\nReplace **ID-NUMBER** with the Subscription ID you noted from the previous step.",
+      "line": 3,
+      "title": "Provider - subscription id"
+    },
+    {
+      "file": "src/01.Start/FmtValidate.md",
+      "description": "To make sure the configuration files are formatted correctly, execute the following:\r\n\r\n>> terraform fmt",
+      "line": 3,
+      "title": "Execute - terraform fmt"
+    },
+    {
+      "file": "src/01.Start/FmtValidate.md",
+      "description": "And we will verify the configuration syntax by executing the below:\r\n\r\n>> terraform validate",
+      "line": 5,
+      "title": "Execute - terraform validate"
+    },
+    {
+      "file": "src/01.Start/PlanApply.md",
+      "description": "We are now ready to execute a plan of the terraform configuration against the real life environment. Execute the below:\r\n\r\n>> terraform plan",
+      "line": 3,
+      "title": "Execute - terraform plan"
+    },
+    {
+      "file": "src/01.Start/PlanApply.md",
+      "description": "The expected output is below",
+      "line": 5,
+      "title": "Plan - output"
+    },
+    {
+      "file": "src/01.Start/PlanApply.md",
+      "description": "If you are happy with what the above plan shows, adding one new resource which is a resource group, then you are ready to run the below:\r\n\r\n>> terraform apply\r\n\r\nWhen you execute this, you will be prompted to approve by entering **yes**.",
+      "line": 23,
+      "title": "Execute - terraform apply"
+    },
+    {
+      "file": "src/01.Start/PlanApply.md",
+      "description": "The apply should complete with a output like the below.",
+      "line": 25,
+      "title": "Apply - output"
+    },
+    {
+      "file": "src/01.Start/PlanApply.md",
+      "description": "The above output confirms the creation of the resource group.",
+      "line": 33,
+      "title": "Apply - output success"
+    },
+    {
+      "file": "src/01.Start/Tfstate.md",
+      "description": "Once you run your first apply, a new file appears with the name **terraform.tfstate**. You should be able to see this in your directory by running:\r\n\r\n>> ls\r\n\r\nThis is the Terraform state file, a map to the configurations you created in code with resources in Azure. The state file expects the Azure resource to be configured as per the configuration file. If there is any deviation from the configuration/state file, Terraform on apply may try reconfiguring the resource.\r\n\r\nIf anything happens to the state file, there will be no record of the configurations applying so will cause resources to be duplicated or trigger errors on run. The state file is classed as a sensitive file and should be kept secure in a private (non-public) location.",
+      "line": 3,
+      "title": "Tfstate"
+    },
+    {
+      "file": "src/01.Start/Congrats.md",
+      "description": "Congrats, you completed the getting started segment of the content. Read above what you have learnt and continue with the content to dig deeper into what else you can do with Terraform.",
+      "line": 18,
+      "title": "Level 1 Completed"
+    }
+  ],
+  "ref": "introduction"
+}
