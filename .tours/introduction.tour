@@ -1,0 +1,37 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "00. Introduction",
+  "steps": [
+    {
+      "file": "src/00.Intro/Introduction.md",
+      "description": "CodeTour is installed and working 😄. Move onto the next step.",
+      "line": 12,
+      "title": "👍 CodeTour Installed"
+    },
+    {
+      "file": "src/00.Intro/Tools.md",
+      "description": "To start we need Terraform to be installed to execute locally. You can access the download page by clicking [here](https://www.terraform.io/downloads.html).",
+      "line": 5,
+      "title": "Install Terraform"
+    },
+    {
+      "file": "src/00.Intro/Tools.md",
+      "description": "We are going to use Visual Studio Code to write our Infrastructure as Code (IaC). To get a rich experience, we will use the HashiCorp Terraform extension to utilise the langugage server. You can install the extension by selecting the **Extensions** icon on the left side menu or by clicking [here](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform).",
+      "line": 6,
+      "title": "Install Terraform VS Code Extension"
+    },
+    {
+      "file": "src/00.Intro/Tools.md",
+      "description": "We will also need to install the Azure Command-Line Interface (AZ CLI) to authenticate to Azure. You can download this tool from [here](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)",
+      "line": 7,
+      "title": "Install Azure CLI"
+    },
+    {
+      "file": "src/00.Intro/Tools.md",
+      "description": "Great, now that all tools are installed we can move onto learning Terraform.",
+      "line": 9,
+      "title": "Summary"
+    }
+  ],
+  "ref": "introduction"
+}
