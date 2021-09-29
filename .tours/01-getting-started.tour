@@ -4,14 +4,14 @@
   "steps": [
     {
       "file": "src/01.start/LetsStart.md",
-      "description": "To start, we need to understand what is a provider. Terraform is a multi-platform IaC (Infrastructure as Code) tool and doesn't know you want to work with Azure. For Terraform to understand what services you are going to use, we need to create a **provider.tf** file and specify Azure.\r\n\r\nFirst we need to change our working directory in terminal to exercise\\exercise-01:\r\n\r\n>> cd exercise\\exercise-01\r\n\r\nAnd we need to create a file called **provider.tf**:\r\n\r\n>> New-Item -Name provider.tf -ItemType File",
+      "description": "To start, we need to understand what a provider is. Terraform is a multi-platform IaC (Infrastructure as Code) tool and doesn't know you want to work with Azure. For Terraform to understand what services you are going to use, we need to create a **provider.tf** file and specify Azure.\r\n\r\nFirst we need to change our working directory within the terminal to exercise\\exercise-01:\r\n\r\n>> cd exercise\\exercise-01\r\n\r\nAnd we need to create a file called **provider.tf**:\r\n\r\n>> New-Item -Name provider.tf -ItemType File",
       "line": 1,
       "title": "Execute - provider create"
     },
     {
       "file": "exercise/exercise-01/provider.tf",
-      "description": "We need to specify in our **provider.tf** file that we are going to use Azure.\r\n\r\nExecute or enter the following code:\r\n\r\n```\r\nprovider \"azurerm\" {\r\n  features {}\r\n}\r\n```",
-      "line": 5,
+      "description": "In the **provider.tf** file, we need to configure the Azure provider.\r\n\r\nExecute or enter the following code:\r\n\r\n```\r\nprovider \"azurerm\" {\r\n  features {}\r\n}\r\n```",
+      "line": 7,
       "title": "Execute - provider code"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "file": "exercise/exercise-01/provider.tf",
-      "description": "We can use **features** to add resource configurations to certain Azure services. This will apply to any resources we confgiure in this directory. Here we are not congfiguring features.",
+      "description": "We can use **features** to add resource configurations to certain Azure services. This will apply to any resources we confgiure in this directory. At this stage we are not congfiguring features.",
       "line": 2,
       "title": "Provider - features"
     },
@@ -34,13 +34,13 @@
     },
     {
       "file": "src/01.start/Directory.md",
-      "description": "**.terraform** is a directory created as part of the **terraform init** execution.\r\n\r\nThe contents of this directory should look something like this:\r\n\r\n**providers\\registry.terraform.io\\hashicorp\\azurerm** - the only file is the Azure provider application.",
+      "description": "**.terraform** is a directory created as part of the **terraform init** execution.\r\n\r\nThe contents of this directory should look something like this:\r\n\r\n**providers\\registry.terraform.io\\hashicorp\\azurerm** - the only file within this directory is the Azure provider application.",
       "line": 5,
       "title": "Dir - .terraform"
     },
     {
       "file": "src/01.start/Directory.md",
-      "description": "The **.terraform.lock.hcl** file is used to lock versions of providers so they do not change. This is to prevent breaking changes and increase security, these will be covered later in the content.\r\n\r\nYou can view the contents of the file by executing the following:\r\n\r\n>> code .terraform.lock.hcl",
+      "description": "The **.terraform.lock.hcl** file is used to lock versions of providers so they don't change. This is to prevent breaking changes and increase security, something we will be cover later in the content.\r\n\r\nYou can view the contents of the file by executing the following:\r\n\r\n>> code .terraform.lock.hcl",
       "line": 6,
       "title": "Dir - .terraform.lock.hcl"
     },
@@ -52,14 +52,14 @@
     },
     {
       "file": "src/01.start/Directory.md",
-      "description": "The provider is downloaded and you understand the files that exists. We can now create the **main.tf** file which will contain our first Azure resource code.\r\n\r\n>> New-Item -Name main.tf -ItemType File",
+      "description": "The provider is downloaded successfully as part of terraform init. We can now create the **main.tf** file which will contain our first Azure resource code.\r\n\r\n>> New-Item -Name main.tf -ItemType File",
       "line": 8,
       "title": "Execute - main create"
     },
     {
       "file": "exercise/exercise-01/main.tf",
       "description": "The first resource we create will be a Resource Group. Execute the below:\r\n\r\n```\r\nresource \"azurerm_resource_group\" \"first_tf\"{\r\n  name     = \"first_tf_rgp\"\r\n  location = \"UK South\"\r\n}\r\n```",
-      "line": 4,
+      "line": 10,
       "title": "Execute - az rgp create"
     },
     {
@@ -82,7 +82,7 @@
     },
     {
       "file": "exercise/exercise-01/main.tf",
-      "description": "**name** and **location** are required arguments and will trigger errors if missing. There are also additional arguments which are optional you can choose to either include or exclude, for example, tags. You can view what arguments are required and optional by visting the HashiCorp Terraform site, click [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) for Azure Resource Group information.",
+      "description": "**name** and **location** are required arguments and will trigger errors if missing. There are optional arguments you can choose to either include or exclude, for example, tags. You can view what arguments are required/optional by visting the HashiCorp Terraform site, click [here](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) for Azure Resource Group information.\r\n\r\nMake sure to save the file.",
       "line": 5,
       "title": "Resource Group - required/optional arguments"
     },
@@ -106,7 +106,7 @@
     },
     {
       "file": "exercise/exercise-01/provider.tf",
-      "description": "Using the subscription id, we need to set within the provider what Azure subscription we want to apply the configuration.\r\n\r\n```\r\nsubscription_id = ID-NUMBER\r\n```\r\n\r\nReplace **ID-NUMBER** with the Subscription ID you noted from the previous step.",
+      "description": "Using the subscription id, we need to set within the provider what Azure subscription we want to apply the configuration.\r\n\r\n```\r\nsubscription_id = \"ID-NUMBER\"\r\n```\r\n\r\nReplace **ID-NUMBER** with the Subscription ID you noted from the previous step. Keep the quotes around the Subscription ID.\r\n\r\nMake sure to save the file.",
       "line": 3,
       "title": "Provider - subscription id"
     },
